@@ -4,6 +4,7 @@ class Item
   def initialize(publish_date)
     @publish_date = publish_date
     @archived = false
+    @genre = nil
   end
 
   def can_be_archived?
