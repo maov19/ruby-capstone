@@ -1,9 +1,10 @@
 class Item
   attr_accessor :publish_date, :archived
 
-  def initialize(publish_date)
-    @publish_date = publish_date
+  def initialize()
+    @publish_date = nil
     @archived = false
+    @genre = nil
   end
 
   def can_be_archived?
