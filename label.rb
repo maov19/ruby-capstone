@@ -1,3 +1,5 @@
+require_relative 'item'
+
 class Label
   attr_accessor :id, :title, :color, :items
 
@@ -10,5 +12,6 @@ class Label
 
   def add_item(item)
     @items << item
+    item.label = self
   end
 end
