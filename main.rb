@@ -14,7 +14,7 @@ class Main
     puts '10. Quit'
   end
 
-  def select_choice(choice)
+  def book_selection(choice)
     case choice
     when 1
       # List all books
@@ -25,6 +25,11 @@ class Main
     when 3
       # Add a book
       puts 'Adding a book...'
+    end
+  end
+
+  def music_selection(choice)
+    case choice
     when 4
       # List all music albums
       puts 'Listing all music albums...'
@@ -34,6 +39,11 @@ class Main
     when 6
       # Add a music album
       puts 'Adding a music album...'
+    end
+  end
+
+  def game_selection(choice)
+    case choice
     when 7
       # List all games
       puts 'Listing all games...'
@@ -46,6 +56,12 @@ class Main
     end
 
     puts "\n"
+  end
+
+  def select_choice(choice)
+    book_selection(choice)
+    music_selection(choice)
+    game_selection(choice)
   end
 end
 
