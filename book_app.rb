@@ -8,7 +8,7 @@ class BookActions
 
   def list_books
     if @books.empty?
-      puts "No books found!"
+      puts 'No books found!'
     else
       puts "\n"
       puts '--------------- Book Info ---------------'
@@ -17,22 +17,21 @@ class BookActions
         puts "Publisher: #{book.publisher}"
         puts "Cover State: #{book.cover_state}"
         puts "Publish Date: #{book.publish_date}"
-        puts "------------------------------------------"
+        puts '------------------------------------------'
       end
     end
   end
 
   def list_labels
-    labels = @books.map { |book| book.label }.uniq
+    labels = @books.map(&:label).uniq
+    puts "\n"
     if labels.empty?
-      puts "\n"
       puts "No labels found!\n"
     else
-      puts "\n"
       puts '--------------- Label Info ---------------'
       labels.each do |label|
         puts "Color: #{label.color} - Title: #{label.title}\n"
-        puts "------------------------------------------"
+        puts '------------------------------------------'
       end
     end
   end
@@ -51,9 +50,6 @@ class BookActions
       cover_state = 'bad'
     when 'g'
       cover_state = 'good'
-    else
-      puts 'Invalid cover state. Using default cover state: good.'
-      cover_state = 'good'
     end
 
     print 'Enter the publish date of the book (YYYY-MM-DD): '
@@ -68,9 +64,6 @@ class BookActions
       color = 'green'
     when 'b'
       color = 'blue'
-    else
-      puts 'Invalid color option. Using default color: red.'
-      label_color = 'red'
     end
 
     book = Book.new(publish_date, publisher, cover_state)
@@ -78,9 +71,7 @@ class BookActions
     label.add_item(book)
 
     @books << book
-    puts "\n"
-    puts "------------------------------------------"
+    puts '------------------------------------------'
     puts "Book added successfully\n"
-    puts "------------------------------------------"
   end
 end

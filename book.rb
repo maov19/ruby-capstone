@@ -3,7 +3,6 @@ require 'date'
 
 class Book < Item
   attr_accessor :publisher, :cover_state, :label
-  attr_writer :label
 
   def initialize(publish_date, publisher, cover_state, labels: [])
     super(publish_date)
