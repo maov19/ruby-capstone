@@ -1,4 +1,4 @@
-equire_relative 'item'
+require_relative 'item'
 require 'date'
 
 class MusicAlbum < Item
