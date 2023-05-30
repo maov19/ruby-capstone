@@ -1,7 +1,7 @@
 require_relative 'label'
 
 class Item
-  attr_accessor :publish_date, :archived, :label
+  attr_accessor :publish_date, :archived, :label, :genre
 
   def initialize(publish_date)
     @publish_date = publish_date
