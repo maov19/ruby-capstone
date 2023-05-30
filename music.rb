@@ -6,7 +6,7 @@ class MusicAlbum < Item
   attr_writer :genre
 
   def initialize(name, publish_date, on_spotify: false, genres: [])
-    super()
+    super(publish_date)
     @name = name
     @publish_date = Date.parse(publish_date)
     @on_spotify = on_spotify

@@ -1,8 +1,8 @@
 class Item
   attr_accessor :publish_date, :archived
 
-  def initialize()
-    @publish_date = nil
+  def initialize(publish_date)
+    @publish_date = publish_date
     @archived = false
     @genre = nil
   end
