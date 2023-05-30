@@ -12,4 +12,13 @@ class MusicAlbum < Item
     @on_spotify = on_spotify
     @genres = genres
   end
+
+  def can_be_archived?
+    super()
+    (Date.today.year - @publish_date.year) > 10 && @on_spotify
+  end
+
+  def add_genre(genre)
+    @genres << genre
+  end
 end

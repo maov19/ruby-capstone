@@ -1,6 +1,11 @@
 require_relative 'item'
+require_relative 'music_app'
 
 class Main
+  def initialize
+    @music_app = MusicAlbumMethods.new
+  end
+
   def display_options
     puts '1. List all books.'
     puts '2. List all labels (e.g. Gift, New).'
@@ -33,12 +38,15 @@ class Main
     when 4
       # List all music albums
       puts 'Listing all music albums...'
+      @music_app.list_all_albums
     when 5
       # List all genres
       puts 'Listing all genres...'
+      @music_app.list_all_genres
     when 6
       # Add a music album
       puts 'Adding a music album...'
+      @music_app.add_album
     end
   end
 
