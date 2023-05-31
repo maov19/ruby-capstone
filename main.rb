@@ -1,11 +1,14 @@
 require_relative 'item'
 require_relative 'music_app'
 require_relative 'book_app'
+require_relative 'game_app'
+require 'Date'
 
 class Main
   def initialize
     @music_app = MusicAlbumMethods.new
     @book_app = BookActions.new
+    @game_app = GameApp.new
   end
 
   def display_options
@@ -55,17 +58,37 @@ class Main
     end
   end
 
+  def check_multiplayer
+    puts 'Is the game multiplayer [Y/N]: '
+    val = gets.chomp.upcase
+    case val
+    when 'Y'
+      true
+    when 'N'
+      false
+    else
+      puts 'Invalid selection, please type either Y or N to proceed'
+      check_permission
+    end
+  end
+
+  def game_input
+    puts 'Publish Date e.g dd/mm/yyyy: '
+    publish_date = gets.chomp.to_s
+    puts 'Last played date e.g dd/mm/yyyy: '
+    last_played = gets.chomp.to_s
+    multiplayer = check_multiplayer
+    @game_app.add_game(publish_date, multiplayer, last_played)
+  end
+
   def game_selection(choice)
     case choice
     when 7
-      # List all games
-      puts 'Listing all games...'
+      @game_app.list_games
     when 8
-      # List all authors
-      puts 'Listing all authors...'
+      @game_app.list_authors
     when 9
-      # Add a game
-      puts 'Adding a game...'
+      game_input
     end
 
     puts "\n"
