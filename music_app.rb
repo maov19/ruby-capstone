@@ -4,7 +4,7 @@ require 'json'
 class MusicAlbumMethods
   attr_accessor :albums
 
-  def initialize (filename: './data/albums.json')
+  def initialize(filename: './data/albums.json')
     @filename = filename
     @albums = load_data || []
   end
@@ -60,7 +60,10 @@ class MusicAlbumMethods
   def load_data
     if File.exist?(@filename)
       data = JSON.parse(File.read(@filename))
-      data.map { |album_data| MusicAlbum.new(album_data['name'], album_data['publish_date'], on_spotify: album_data['on_spotify'], genres: album_data['genres']) }
+      data.map do |album_data|
+        MusicAlbum.new(album_data['name'], album_data['publish_date'], on_spotify: album_data['on_spotify'],
+                                                                       genres: album_data['genres'])
+      end
     else
       []
     end
@@ -75,7 +78,7 @@ class MusicAlbumMethods
         genres: album.genres
       }
     end
-  
+
     File.write(@filename, albums_json.to_json)
   end
 end
