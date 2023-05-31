@@ -28,22 +28,22 @@ class BookActions
   def list_labels
     labels = @books.map(&:label).uniq
     puts "\n"
-  
+
     if labels.empty?
       puts "No labels found!\n"
     else
       puts '--------------- Label Info ---------------'
-  
+
       labels.each do |label|
         name = label.is_a?(Label) ? label.name : label['name']
         color = label.is_a?(Label) ? label.color : label['color']
-  
+
         puts "Color: #{color} - Name: #{name}\n"
         puts '------------------------------------------'
       end
     end
   end
-  
+
   def add_book
     print 'Enter the book title: '
     title = gets.chomp
