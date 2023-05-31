@@ -1,6 +1,8 @@
 require_relative 'music'
 
 class MusicAlbumMethods
+  attr_accessor :albums
+
   def initialize
     @albums = []
   end
