@@ -6,7 +6,7 @@ require 'json'
 
 RSpec.describe BookActions do
   before do
-    @book_app = BookActions.new(file: '../data/books.json')
+    @book_app = BookActions.new(file: './data/books.json')
   end
 
   it 'is an instance of the Book class' do
