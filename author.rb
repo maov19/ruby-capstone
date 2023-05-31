@@ -1,17 +1,18 @@
 require_relative 'item'
 
 class Author
-  attr_reader :id, :first_name, :last_name, :items
+  attr_accessor :first_name, :last_name
+  attr_reader :items
 
-  def initialize(id, first_name, last_name)
-    @id = id
+  def initialize(first_name: 'Unknown', last_name: 'Unknown')
+    @id = rand(1..1000)
     @first_name = first_name
     @last_name = last_name
     @items = []
   end
 
   def add_item(item)
-    @items << item
+    @items << item unless @items.include?(item)
     item.author = self
   end
 end
