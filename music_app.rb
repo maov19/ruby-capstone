@@ -1,10 +1,12 @@
 require_relative 'music'
+require 'json'
 
 class MusicAlbumMethods
   attr_accessor :albums
 
-  def initialize
-    @albums = []
+  def initialize (filename: './data/albums.json')
+    @filename = filename
+    @albums = load_data || []
   end
 
   def display_menu
@@ -52,5 +54,28 @@ class MusicAlbumMethods
     album = MusicAlbum.new(name, publish_date, on_spotify: on_spotify, genres: genres)
     @albums << album
     puts "Album  '#{album.name}' has been added."
+    save_data
+  end
+
+  def load_data
+    if File.exist?(@filename)
+      data = JSON.parse(File.read(@filename))
+      data.map { |album_data| MusicAlbum.new(album_data['name'], album_data['publish_date'], on_spotify: album_data['on_spotify'], genres: album_data['genres']) }
+    else
+      []
+    end
+  end
+
+  def save_data
+    albums_json = @albums.map do |album|
+      {
+        name: album.name,
+        publish_date: album.publish_date.iso8601,
+        on_spotify: album.on_spotify,
+        genres: album.genres
+      }
+    end
+  
+    File.write(@filename, albums_json.to_json)
   end
 end
