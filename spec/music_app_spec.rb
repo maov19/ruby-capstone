@@ -16,7 +16,7 @@ RSpec.describe MusicAlbumMethods do
         'Test Album',
         '2023-05-31',
         'Y',
-        'Rock'
+        'rock'
       )
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MusicAlbumMethods do
       expect(album.name).to eq('Test Album')
       expect(album.publish_date).to eq(Date.parse('2023-05-31'))
       expect(album.on_spotify).to eq(true)
-      expect(album.genres).to eq('Rock')
+      expect(album.genres).to eq('rock')
     end
   end
 end
