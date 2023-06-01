@@ -44,7 +44,7 @@ RSpec.describe GameApp do
   describe '#load_data' do
     it 'loads data from the games file' do
       allow(File).to receive(:exist?).and_return(true)
-      allow(File).to receive(:read).and_return('[{"publish_date": "01/01/2023", "last_played_at": "01/01/2023", '\
+      allow(File).to receive(:read).and_return('[{"publish_date": "01/01/2023", "last_played_at": "01/01/2023", '\ 
                                                '"multiplayer": true, "author": {"first_name": "J", "last_name": "D"}}]')
       expect { game_app.load_data }.to change { game_app.instance_variable_get(:@games).length }.by(1)
     end
