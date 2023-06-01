@@ -1,7 +1,6 @@
 require_relative 'game'
 require_relative 'author'
 require 'json'
-require 'pry'
 
 class GameApp
   def initialize
