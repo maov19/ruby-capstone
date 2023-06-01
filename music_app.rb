@@ -50,7 +50,7 @@ class MusicAlbumMethods
     puts 'Is it on spotify? (Y/N):'
     on_spotify = gets.chomp.downcase == 'y'
     puts 'Enter the genre of the music album:'
-    genres = gets.chomp
+    genres = gets.chomp.downcase
     album = MusicAlbum.new(name, publish_date, on_spotify: on_spotify, genres: genres)
     @albums << album
     puts "Album  '#{album.name}' has been added."
