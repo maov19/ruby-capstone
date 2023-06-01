@@ -1,13 +1,13 @@
 require_relative './helper_spec'
 require 'date'
 
-RSpec.describe MusicAlbumMethods do
+RSpec.describe MusicApp do
   before do
-    @music_app = MusicAlbumMethods.new
+    @music_app = MusicApp.new
   end
 
-  it 'is an instance of the MusicAlbumMethods class' do
-    expect(@music_app).to be_instance_of(MusicAlbumMethods)
+  it 'is an instance of the MusicApp class' do
+    expect(@music_app).to be_instance_of(MusicApp)
   end
 
   describe '#add_album' do

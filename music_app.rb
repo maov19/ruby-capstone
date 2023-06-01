@@ -1,7 +1,7 @@
-require_relative 'music'
+require_relative 'music_album'
 require 'json'
 
-class MusicAlbumMethods
+class MusicApp
   attr_accessor :albums
 
   def initialize(filename: './data/albums.json')

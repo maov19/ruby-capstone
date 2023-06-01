@@ -6,7 +6,7 @@ require 'Date'
 
 class Main
   def initialize
-    @music_app = MusicAlbumMethods.new
+    @music_app = MusicApp.new
     @book_app = BookActions.new
     @game_app = GameApp.new
   end
