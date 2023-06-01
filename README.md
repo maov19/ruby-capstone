@@ -19,8 +19,8 @@
 - [❓ FAQ](#faq)
 - [📝 License](#license)
 
-# 📖 Ruby Capstone <a name="about-project"></a>
-*Ruby Capstone* is a Microverse exercise project which is build with Ruby to manage users catalog using CLI. User can add new books, music albums, and games and also display their catalog list and also they can save their catalog inside Json files.
+# 📖 Catalog of my things <a name="about-project"></a>
+*CMG* is a Microverse exercise project which is build with Ruby to manage users catalog using CLI. User can add new books, music albums, and games and also display their catalog list and also they can save their catalog inside Json files.
 
 
 ## 🛠 Built With <a name="built-with"></a>
