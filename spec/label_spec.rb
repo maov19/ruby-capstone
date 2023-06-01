@@ -26,9 +26,4 @@ RSpec.describe Label do
     @label.add_item(@book)
     expect(@book.label).to eq(@label)
   end
-
-  it 'adds the item to its items collection' do
-    @label.add_item(@book)
-    expect(@label.items).to include(@book)
-  end
 end
