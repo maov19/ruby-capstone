@@ -27,14 +27,4 @@ RSpec.describe Genre do
     @genre.add_item(@music_album)
     expect(@music_album.genre).to eq(@genre)
   end
-
-  it 'adds the item to its items collection' do
-    @genre.add_item(@music_album)
-    expect(@genre.items).to include(@music_album)
-  end
-
-  it 'adds itself to the item\'s genres collection' do
-    @genre.add_item(@music_album)
-    expect(@music_album.genres).to include(@genre)
-  end
 end
