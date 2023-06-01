@@ -1,7 +1,6 @@
 require_relative 'game'
 require_relative 'author'
 require 'json'
-require 'pry'
 
 class GameApp
   def initialize
@@ -9,6 +8,29 @@ class GameApp
     @games = []
     @authors = []
     load_data
+  end
+
+  def check_multiplayer
+    puts 'Is the game multiplayer [Y/N]: '
+    val = gets.chomp.upcase
+    case val
+    when 'Y'
+      true
+    when 'N'
+      false
+    else
+      puts 'Invalid selection, please type either Y or N to proceed'
+      check_permission
+    end
+  end
+
+  def game_input
+    puts 'Publish Date e.g dd/mm/yyyy: '
+    publish_date = gets.chomp.to_s
+    puts 'Last played date e.g dd/mm/yyyy: '
+    last_played = gets.chomp.to_s
+    multiplayer = check_multiplayer
+    add_game(publish_date, multiplayer, last_played)
   end
 
   def list_authors
@@ -74,7 +96,7 @@ class GameApp
 
   def select_author_option(publish_date, multi, lastplayed)
     puts ''
-    puts '*Press* 1 to add new author for the game or *Press* 2 to select from list of authors'
+    puts 'Press 1 to add new author for the game or Press 2 to select from list of authors'
     puts '=========================='
     author_option = gets.chomp.to_i
     if author_option == 1

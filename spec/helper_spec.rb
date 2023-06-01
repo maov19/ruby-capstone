@@ -1,3 +1,8 @@
 require_relative '../music'
 require_relative '../genre'
 require_relative '../music_app'
+require_relative '../book'
+require_relative '../book_app'
+require_relative '../game'
+require_relative '../author'
+require_relative '../game_app'
