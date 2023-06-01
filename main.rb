@@ -58,29 +58,6 @@ class Main
     end
   end
 
-  def check_multiplayer
-    puts 'Is the game multiplayer [Y/N]: '
-    val = gets.chomp.upcase
-    case val
-    when 'Y'
-      true
-    when 'N'
-      false
-    else
-      puts 'Invalid selection, please type either Y or N to proceed'
-      check_permission
-    end
-  end
-
-  def game_input
-    puts 'Publish Date e.g dd/mm/yyyy: '
-    publish_date = gets.chomp.to_s
-    puts 'Last played date e.g dd/mm/yyyy: '
-    last_played = gets.chomp.to_s
-    multiplayer = check_multiplayer
-    @game_app.add_game(publish_date, multiplayer, last_played)
-  end
-
   def game_selection(choice)
     case choice
     when 7
@@ -88,7 +65,7 @@ class Main
     when 8
       @game_app.list_authors
     when 9
-      game_input
+      @game_app.game_input
     end
 
     puts "\n"
