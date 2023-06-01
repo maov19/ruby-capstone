@@ -30,7 +30,6 @@ CREATE TABLE book (
   FOREIGN KEY (item_id) REFERENCES item(id)
 );
 
-
 -- Create genres table
 CREATE TABLE genres (
   id INT Generated ALWAYS AS IDENTITY PRIMARY KEY,
@@ -45,4 +44,22 @@ CREATE TABLE music_albums (
   archived BOOLEAN,
   genre_id INT,
   CONSTRAINT fk_genre FOREIGN KEY (genre_id) REFERENCES genres(id)
+);
+
+-- Create author table
+CREATE TABLE AUTHOR(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
+-- Create games table
+CREATE TABLE GAME(
+    id int NOT NULL,
+    multiplayer BOOLEAN NOT NULL,
+    last_played_at DATE NOT NULL,
+
+    FOREIGN KEY (id) REFERENCES ITEM(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
