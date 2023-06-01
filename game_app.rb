@@ -1,10 +1,14 @@
 require_relative 'game'
 require_relative 'author'
+require 'json'
+require 'pry'
 
 class GameApp
   def initialize
-    @authors = []
+    @games_file = './data/games_authors.json'
     @games = []
+    @authors = []
+    load_data
   end
 
   def list_authors
@@ -12,17 +16,20 @@ class GameApp
       puts 'No authors found'
     else
       puts 'Authors: '
+      puts '...................................'
       @authors.each { |author| puts "Fullname: #{author.last_name} #{author.first_name} " }
+      puts '...................................'
     end
   end
 
   def list_games
     puts 'No games found.' if @games.empty?
+    puts '...................................'
     @games.each do |game|
       puts "Published on : #{game.publish_date}"
       puts "Last Played on : #{game.last_played_at}"
       puts "Multiplayer? : #{game.multiplayer}"
-      puts '.....................'
+      puts '...................................'
     end
   end
 
@@ -51,15 +58,24 @@ class GameApp
     lastname = gets.chomp
     author = Author.new(first_name: firstname, last_name: lastname)
     game = Game.new(publish_date, lastplayed, multi)
-    @games << game
-    game.add_author(author)
-    @authors << author
-    puts '====================='
+
+    existing_author = @authors.find { |a| a.first_name == author.first_name && a.last_name == author.last_name }
+    if existing_author.nil?
+      @games << game
+      game.add_author(author)
+      @authors << author
+    else
+      game.add_author(existing_author)
+      @games << game
+    end
+    puts '=========================='
     puts 'Author added successfully'
   end
 
   def select_author_option(publish_date, multi, lastplayed)
+    puts ''
     puts '*Press* 1 to add new author for the game or *Press* 2 to select from list of authors'
+    puts '=========================='
     author_option = gets.chomp.to_i
     if author_option == 1
       add_author(publish_date, multi, lastplayed)
@@ -83,11 +99,43 @@ class GameApp
     else
       select_author_option(publish_date, multi, lastplayed)
     end
+    save_data
   end
 
   def display_authors
     @authors.each_with_index do |author, index|
       puts "#{index + 1}. #{author.last_name} #{author.first_name}"
     end
+  end
+
+  def load_data
+    if File.exist?(@games_file)
+      data = JSON.parse(File.read(@games_file))
+      data.map do |games_data|
+        author = Author.new(first_name: games_data['author']['first_name'],
+                            last_name: games_data['author']['last_name'])
+        game = Game.new(games_data['publish_date'], games_data['last_played_at'], games_data['multiplayer'])
+        @games << game
+        game.add_author(author)
+        @authors << author
+      end
+    else
+      []
+    end
+  end
+
+  def save_data
+    games = @games.map do |game|
+      {
+        publish_date: game.publish_date,
+        last_played_at: game.last_played_at,
+        multiplayer: game.multiplayer,
+        author: {
+          first_name: game.author.first_name,
+          last_name: game.author.last_name
+        }
+      }
+    end
+    File.write(@games_file, games.to_json)
   end
 end
