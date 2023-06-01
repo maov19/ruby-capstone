@@ -1,22 +1,40 @@
-require 'rspec'
-require_relative '../game_app'
+require 'date'
+require_relative '../item'
+require_relative '../game'
 
 RSpec.describe Game do
-  let(:game) { Game.new('12/02/2019', '10/03/2020', true) }
+  let(:publish_date) { Date.new(2010, 1, 1) }
+  let(:last_played_at) { Date.today.prev_year(1).strftime('%d/%m/%Y') }
+  let(:game) { Game.new(publish_date, last_played_at, 'true', 'false') }
 
-  it 'is an instance of the Game class' do
-    expect(game).to be_instance_of(Game)
+  describe '#initialize' do
+    it 'sets the publish_date' do
+      expect(game.publish_date).to eq(publish_date)
+    end
+
+    it 'sets the last_played_at' do
+      expect(game.last_played_at).to eq(last_played_at)
+    end
+
+    it 'sets the multiplayer' do
+      expect(game.multiplayer).to eq('true')
+    end
+
+    it 'sets the archived' do
+      expect(game.archived).to eq('false')
+    end
   end
 
-  it 'has a publish_date attribute' do
-    expect(game.publish_date).to eq('12/02/2019')
-  end
+  describe '#can_be_archived?' do
+    it 'returns false if the game is not older than 2 years' do
+      future_date = (Date.today + 1).strftime('%d/%m/%Y')
+      game = Game.new(publish_date, future_date, 'true', 'false')
+      expect(game.can_be_archived?).to be false
+    end
 
-  it 'has a last_played attribute' do
-    expect(game.last_played_at).to eq('10/03/2020')
-  end
-
-  it 'has a multiplayer attribute' do
-    expect(game.multiplayer).to eq(true)
+    it 'returns false if the game cannot be archived' do
+      game = Game.new(publish_date, last_played_at, 'true', 'true')
+      expect(game.can_be_archived?).to be false
+    end
   end
 end
