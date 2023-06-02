@@ -2,8 +2,8 @@ require_relative 'label'
 require 'date'
 
 class Item
-  attr_reader :id, :archived, :genre
-  attr_accessor :publish_date, :label, :author
+  attr_reader :id, :archived, :genre, :label, :author
+  attr_accessor :publish_date
 
   def initialize(publish_date, archived: false)
     @id = rand(1..1000)
