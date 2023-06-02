@@ -1,1 +1,1 @@
-[{"name":"Lorem ipsum","publish_date":"2023-06-02","on_spotify":true,"genres":"rock"}]
+[{"name":"Test Album","publish_date":"2023-05-31","on_spotify":true,"genre":{"id":741,"name":"rock"}}]
