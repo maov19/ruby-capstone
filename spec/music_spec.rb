@@ -2,7 +2,8 @@ require_relative './helper_spec'
 
 RSpec.describe MusicAlbum do
   before do
-    @music_album = MusicAlbum.new('Sgt. Pepper\'s Lonely Hearts Club Band', '1967-06-01', on_spotify: true)
+    @music_album = MusicAlbum.new('Sgt. Pepper\'s Lonely Hearts Club Band', '1967-06-01', Genre.new('pop'),
+                                  on_spotify: true)
   end
 
   it 'is an instance of the MusicAlbum class' do
@@ -25,7 +26,7 @@ RSpec.describe MusicAlbum do
 
   context 'when on_spotify is false' do
     before do
-      @music_album = MusicAlbum.new('Thriller', '1982-11-30', on_spotify: false)
+      @music_album = MusicAlbum.new('Thriller', '1982-11-30', Genre.new('pop'), on_spotify: false)
     end
 
     it 'cannot be archived' do

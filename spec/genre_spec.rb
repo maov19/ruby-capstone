@@ -3,7 +3,7 @@ require_relative './helper_spec'
 RSpec.describe Genre do
   before :each do
     @genre = Genre.new('Rock')
-    @music_album = MusicAlbum.new('Sgt. Pepper\'s Lonely Hearts Club Band', '1967-06-01', on_spotify: true)
+    @music_album = MusicAlbum.new('Sgt. Pepper\'s Lonely Hearts Club Band', '1967-06-01', @genre, on_spotify: true)
   end
 
   it 'is an instance of the Genre class' do
